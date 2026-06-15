@@ -4,11 +4,13 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
 
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from database.database import get_db
 
 from models.nutrition import Nutrition
+from models.user import User
 
 from schemas.nutrition import NutritionCreate, NutritionResponse
 
@@ -25,6 +27,10 @@ def create_nutrition(
     db: Session = Depends(get_db)
 ):
     """Create a nutrition entry"""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
     new_nutrition = Nutrition(
         food_name=nutrition.food_name,
         calories=nutrition.calories,
@@ -33,9 +39,13 @@ def create_nutrition(
         user_id=user_id
     )
     db.add(new_nutrition)
-    db.commit()
-    db.refresh(new_nutrition)
-    return new_nutrition
+    try:
+        db.commit()
+        db.refresh(new_nutrition)
+        return new_nutrition
+    except IntegrityError as e:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Invalid nutrition or user data")
 
 
 @router.get("/{nutrition_id}", response_model=NutritionResponse)

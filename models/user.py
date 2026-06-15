@@ -1,6 +1,5 @@
-from sqlalchemy import Column
-from sqlalchemy import Integer
-from sqlalchemy import String
+from sqlalchemy import Integer, String
+from sqlalchemy.orm import Mapped, mapped_column
 
 from database.database import Base
 
@@ -9,18 +8,13 @@ class User(Base):
 
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
 
-    fullname = Column(String(100))
+    fullname: Mapped[str] = mapped_column(String(100))
 
-    email = Column(
+    email: Mapped[str] = mapped_column(
         String(100),
         unique=True
     )
 
-    password = Column(String)
-
-    role = Column(
-        String,
-        default="user"
-    )
+    password: Mapped[str] = mapped_column(String)

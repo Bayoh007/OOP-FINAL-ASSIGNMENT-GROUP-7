@@ -16,6 +16,50 @@ from models.workout import Workout
 from models.nutrition import Nutrition
 from models.progress import Progress
 
+from dotenv import load_dotenv
+import os
+
+# New main.py
+from fastapi import FastAPI
+from fastapi.openapi.utils import get_openapi
+
+app = FastAPI(title="Fitness Tracker API")
+
+# --- ADD THIS FUNCTION TO UPDATE OPENAPI SCHEMA ---
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="Fitness Tracker API",
+        version="1.0.0",
+        routes=app.routes,
+    )
+    # This block tells Swagger to add the Bearer Auth option
+    openapi_schema["components"]["securitySchemes"] = {
+        "Bearer Auth": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Enter: **Bearer <YOUR_TOKEN>**"
+        }
+    }
+    openapi_schema["security"] = [{"Bearer Auth": []}]
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
+# --------------------------------------------------
+
+# Include your routers as before
+# app.include_router(auth.router)
+# app.include_router(workouts.router)
+
+# Load environment variables from .env
+load_dotenv()
+
+# Note: DATABASE_URL is loaded in core.config, not here
+# Removed direct psycopg2.connect() call to prevent blocking app startup
+
 app = FastAPI(
     title="Royal Fitness SL API",
     version="1.0.0"

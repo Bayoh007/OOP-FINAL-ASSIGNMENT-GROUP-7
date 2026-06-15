@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Fitness - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="interPage" class="dashboard-page">
+            <div class="dashboard-header">
+                <div>
+                    <h1>Royal Fitness Tracker</h1>
+                    <p class="subtitle">Welcome back, <span id="welcomeName">User</span>!</p>
+                    <p class="email-text">Signed in as <span id="userEmail"></span></p>
+                </div>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+
+            <div id="interMessage" class="message"></div>
+
+            <div class="dashboard-grid">
+                <section class="dashboard-card">
+                    <h2>Progress</h2>
+                    <p>Track your latest weight, height, and BMI.</p>
+                    <div id="progressList" class="item-list"></div>
+                    <form id="progressForm" class="small-form">
+                        <div class="form-row">
+                            <label for="progressWeight">Weight (kg)</label>
+                            <input type="number" step="0.1" id="progressWeight" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="progressHeight">Height (m)</label>
+                            <input type="number" step="0.01" id="progressHeight" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Progress</button>
+                    </form>
+                </section>
+
+                <section class="dashboard-card">
+                    <h2>Workouts</h2>
+                    <p>Save your workouts and calories burned.</p>
+                    <div id="workoutList" class="item-list"></div>
+                    <form id="workoutForm" class="small-form">
+                        <div class="form-row">
+                            <label for="workoutName">Workout Name</label>
+                            <input type="text" id="workoutName" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="workoutDuration">Duration (minutes)</label>
+                            <input type="number" id="workoutDuration" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="workoutCalories">Calories Burned</label>
+                            <input type="number" id="workoutCalories" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Workout</button>
+                    </form>
+                </section>
+
+                <section class="dashboard-card">
+                    <h2>Nutrition</h2>
+                    <p>Record your meals and macros.</p>
+                    <div id="nutritionList" class="item-list"></div>
+                    <form id="nutritionForm" class="small-form">
+                        <div class="form-row">
+                            <label for="nutritionFood">Food Name</label>
+                            <input type="text" id="nutritionFood" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="nutritionCalories">Calories</label>
+                            <input type="number" id="nutritionCalories" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="nutritionProtein">Protein (g)</label>
+                            <input type="number" step="0.1" id="nutritionProtein" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="nutritionCarbs">Carbs (g)</label>
+                            <input type="number" step="0.1" id="nutritionCarbs" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Nutrition</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

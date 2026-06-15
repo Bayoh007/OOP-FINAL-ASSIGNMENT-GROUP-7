@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Fitness - Authentication</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginContainer" class="auth-container">
+            <div class="auth-box">
+                <h1>Royal Fitness Tracker</h1>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <p class="toggle-text">Don't have an account? <a href="#" onclick="toggleForms()">Register here</a></p>
+                </form>
+                <div id="loginMessage" class="message"></div>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="registerContainer" class="auth-container hidden">
+            <div class="auth-box">
+                <h1>Royal Fitness Tracker</h1>
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerFullname">Full Name</label>
+                        <input type="text" id="registerFullname" name="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword2">Confirm Password</label>
+                        <input type="password" id="registerPassword2" name="password2" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <p class="toggle-text">Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+                </form>
+                <div id="registerMessage" class="message"></div>
+            </div>
+        </div>
+
+        <!-- Dashboard (shown after successful login) -->
+        <div id="dashboardContainer" class="auth-container hidden">
+            <div class="auth-box">
+                <h1>Royal Fitness Tracker</h1>
+                <h2>Welcome, <span id="userName">User</span>!</h2>
+                <div class="dashboard-info">
+                    <p>Your token: <code id="tokenDisplay"></code></p>
+                </div>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

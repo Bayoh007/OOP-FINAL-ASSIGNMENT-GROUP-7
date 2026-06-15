@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Fitness - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="dashboardPage" class="auth-container">
+            <div class="auth-box">
+                <h1>Royal Fitness Tracker</h1>
+                <h2>Welcome back, <span id="userName">User</span>!</h2>
+                <div class="dashboard-info">
+                    <p><strong>Email:</strong> <span id="emailDisplay"></span></p>
+                    <p><strong>Token:</strong> <code id="tokenDisplay"></code></p>
+                </div>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

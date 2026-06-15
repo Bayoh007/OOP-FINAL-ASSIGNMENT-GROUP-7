@@ -9,6 +9,10 @@ DATABASE_URL = os.getenv(
     "postgresql://royal_admin:123456@localhost/royal_fitness_db"
 )
 
+# Supabase
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
 # JWT
 SECRET_KEY = os.getenv("SECRET_KEY", "ROYALFITNESSSL2026")
 ALGORITHM = os.getenv("ALGORITHM", "HS256")
